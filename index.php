@@ -4,12 +4,13 @@
 	define("ROOT",realpath(dirname(__FILE__)).DS);
 	if(isset($_SERVER['HTTPS'])) {
 		define("URL", "https://".$_SERVER['HTTP_HOST']."/");
+		define("URLC", "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/mrnote/");
 	} else {
 		define("URL", "http://".$_SERVER['HTTP_HOST']."/");
-		//header('location: https://'.$_SERVER['HTTP_HOST'].'/');
+		define("URLC", "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/nrnote/");
 	}
-	define("API_ADMIN", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/mrnote/");
-	define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/publicSite/");
 	require_once("config/Autoload.php");
 	config\Autoload::run();
 	require_once("views/layouts/DefaultLayout.php");

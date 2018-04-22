@@ -2,7 +2,6 @@
 ini_set('date.timezone', 'America/Mexico_City');
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT",realpath(dirname(__FILE__)).DS);
-
 include("Slim/Slim.php");
 include("app/library/Autoload.php");
 \Slim\Slim::registerAutoloader();

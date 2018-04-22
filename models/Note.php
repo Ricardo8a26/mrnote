@@ -2,16 +2,16 @@
 	use models\CRUD as crud;
 	class Admin{
 		protected $crud;
-		protected $id;
-		protected $user;
-		protected $email;
-		protected $private_key;
-		protected $password;
-		protected $avatar;
-		protected $id_rol;
+		protected $id_note;
+		protected $name;
+		protected $plain_text;
+		protected $html;
+		protected $last_access;
+		protected $private;
+		protected $;
+		protected $;
 		protected $condition;
 		protected $value_condition;
-		protected $blob;
 		public function __construct(){
 			$this->crud = new CRUD();
 		}

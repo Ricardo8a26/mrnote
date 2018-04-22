@@ -4,7 +4,7 @@
 
 		public static function request($app) {
 	
-			$app->post("/cupon/authDomain", function() use ($app) {
+			$app->post("/mrnote/authDomain", function() use ($app) {
 	  			//create the conection
 		        $conection=new Conection();
 		        //if the domains is valid, we send the API key and we close the conection
@@ -24,7 +24,7 @@
 		        }
 		    });
 
-			$app->post("/cupon/create/:table",function($table) use ($app) {
+			$app->post("/mrnote/create/:table",function($table) use ($app) {
 				$fields=array();
 	            $values=array();
 	            $query="";
@@ -74,7 +74,7 @@
 	            }
 			});
 
-			$app->get('/cupon/:table',function($table) use ($app) {
+			$app->get('/mrnote/:table',function($table) use ($app) {
 				try{
 					$key_api=$app->getCookie("IS_AUTHORIZED");	
 					if(isset($key_api)) {
@@ -106,7 +106,7 @@
 				}
 			});
 
-			$app->get('/cupon/:table/:condition/:value_condition',function($table, $condition, $value_condition) use ($app) {
+			$app->get('/mrnote/:table/:condition/:value_condition',function($table, $condition, $value_condition) use ($app) {
 				try{
 					$key_api=$app->getCookie("IS_AUTHORIZED");
 					if(isset($key_api)) {
@@ -139,7 +139,7 @@
 				}
 			});
 
-			$app->post("/cupon/update/:table", function($table) use ($app) {
+			$app->post("/mrnote/update/:table", function($table) use ($app) {
 		        try{
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
@@ -186,7 +186,7 @@
 		        }
 		    });
 
-		    $app->post("/cupon/delete/:table", function($table) use ($app) {
+		    $app->post("/mrnote/delete/:table", function($table) use ($app) {
 		        try{
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
@@ -221,7 +221,7 @@
 		        }
 		    });
 
-		    $app->post("/cupon/verify", function() use ($app) {
+		    $app->post("/mrnote/verify", function() use ($app) {
 		        try{
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
@@ -264,7 +264,7 @@
 		        }
 		    });
 
-		    $app->post("/cupon/getUser", function() use ($app) {
+		    $app->post("/mrnote/getUser", function() use ($app) {
 		        try{
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
@@ -301,7 +301,7 @@
 		        }
 		    });
 
-		    $app->post("/cupon/login", function() use ($app) {
+		    $app->post("/mrnote/login", function() use ($app) {
 		        try{
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
@@ -337,36 +337,6 @@
 		        } catch(PDOException $e) {
 		            //print "Error: Internal Service Error".$e;
 		        }
-		    });
-
-		     $app->get("/cupon/getLIId/:table", function($table) use ($app) {
-		    	try{
-		    		$key_api=$app->getCookie("IS_AUTHORIZED");
-		    		if(isset($key_api)) {
-			            $conection=new Conection();
-		                $conection->startConection();
-			            $sql = $conection->getConection()->prepare('SELECT MAX(id) as id FROM '.$table);
-						$sql->execute();
-						$data = $sql->fetch(\PDO::FETCH_ASSOC);
-						if($data) {
-							$app->response->headers->set("Content-type", "application/json");
-		            		$app->response->status(200);
-							$app->response->body(json_encode($data));
-						} else {
-							$app->response->headers->set("Content-type", "application/json");
-		            		$app->response->status(200);
-							$app->response->body(json_encode(array('response'=>false)));
-						}
-						$conection->stopConection();
-					} else {
-		                $app->response->headers->set("Access-Control-Allow-Origin", $_SERVER['HTTP_ORIGIN']);
-		                $app->response->headers->set("Content-type", "application/json");
-		                $app->response->status(200);
-		                $app->response->body(json_encode(array("response"=>false)));
-		            }
-				} catch(\PDOException $e) {
-
-				}
 		    });
 		}
 	}

@@ -8,18 +8,61 @@ body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
-.footer_link {
+.mdl-checkbox {
+    display: initial;
+    height: 32px;
+}
+.mdl-checkbox__label {
+    font-size: 20px;
+    font-weight: bold;
+}
+.mdl-layout-title {
+    font-size: 32px;
+    font-weight: bold;
+}
+.mdl-logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+.mrnote_alert_password {
+    color: #ff0000;
+    font-weight: bold;
+}
+.mrnote_visible {
+    display: block;
+}
+.mrnote_hide {
+    display: none;
+}
+.mrnote_footer_link {
     font-size: 16px;
 }
-.footer_link:hover {
+.mrnote_footer_link:hover {
 	color: #ffffff;
 }
-.mrnote_logo {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.mrnote_new {
+    text-align: center;
 }
-.mrnote_logo img {
-	width: 70%;
-	height: auto;
+.mrnote_new h1{
+    font-weight: bold;
+}
+.mrnote_logo {
+    width: 70%;
+}
+.mrnote_logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mrnote_input {
+    height: 2em;
+    width: 40%;
+}
+.mrnote_new_note {
+    height: 2em;
+    width: 30%;
+    font-size: 24px;
+}
+.mrnote_new_note:hover {
+    font-weight: bold;
 }

@@ -3,29 +3,20 @@
 	class Conection{
 		/*abstract variables type of protected by the conexion*/
 		protected $user="";
-		protected $products_user="";
 		protected $pwd="";
-		protected $products_pwd="";
 		protected $server;
 		protected $dbname;
-		protected $dbname_products;
 		protected $conection;
 		protected $domain;
 		
 		/*constructor*/
 		public function __construct(){
-			$this->user="usercupon";
-			$this->pwd="pass_cupon_word";
+			$this->user="usermrnote";
+			$this->pwd="F8rNw5k18k4jcLFf";
 			$this->server="localhost";
-			$this->dbname="cup-on";	
-			$this->domain="http://www.cup-on.com.mx";
+			$this->dbname="mrnote";	
+			$this->domain="http://www.mrnote.tcd";
 			$this->key_domain="4c497c6ef2f4de9952509635b57e7b13a83bbb72b6158550cba5301a4af8c947b0f49c83";
-			//$this->user="grupocrucero_com";
-			//$this->pwd="GrUp0_CrUc3R0";
-			//$this->server="grupocrucero.com.mysql";
-			//$this->dbname="grupocrucero_com";	
-			//$this->domain="https://www.grupocrucero.com";
-			//$this->key_domain="4c497c6ef2f4de9952509635b57e7b13a83bbb72b6158550cba5301a4af8c947b0f49c83";
 		}
 		public function authDomain($domain,$key){
 			return $this->domain===$domain&&$this->key_domain===$key;
