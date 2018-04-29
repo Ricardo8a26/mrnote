@@ -10,6 +10,7 @@
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
 					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/material.min.css"/>					
 					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/style.css">
+					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/medias.css">
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 					<script type="text/javascript" src="<?php echo URL; ?>views/assets/js/material.min.js"></script> 
 					<link rel="shortcut icon" type="image/x-icon" href="<?php echo URL; ?>views/assets/img/platform/favicon.ico">

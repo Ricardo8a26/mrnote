@@ -1,16 +1,57 @@
 /*SMARTPHONE*/
 @media screen and (max-width: 480px) {
-	
+	.mrnote_new_note {
+	    height: 3em;
+	    width: 60%;
+	    font-size: 16px;
+	}
+	.mrnote_new {
+	    padding-top: 0em;
+	}
+	.mdl-mini-footer--link-list, .mdl-mini-footer__link-list {
+		display: -webkit-grid;
+		display: grid;
+	}
+	.mdl-layout__content {
+		min-height: 750px !important;
+	}
+	.mrnote_input {
+	    height: 2em;
+	    width: 75%;
+	}
+	.mrnote_new h2{
+	    font-size: 26px;
+	}
+	.mrnote_logo {
+	    width: 90%;
+	    padding-top: 2em;
+	}
 }
 
 /*SMALL TABLETS*/
 @media screen and (min-width:480px) and (max-width: 600px){
-	
+	.mrnote_new_note {
+	    height: 3em;
+	    width: 50%;
+	    font-size: 18px;
+	}
+	.mrnote_new {
+	    padding-top: 1em;
+	}
+	.mdl-layout__content {
+		min-height: 750px !important;
+	}
 }
 
 /*BIG TABLETS AND NORMAL DESKTOP*/
 @media screen and (min-width:600px) and (max-width: 840px){
-	
+	.mrnote_new_note {
+	    height: 3em;
+	    width: 40%;
+	}
+	.mrnote_new {
+	    padding-top: 2em;
+	}
 }
 
 /*BIG DESKTOP*/

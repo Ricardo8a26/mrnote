@@ -13,16 +13,16 @@ body {
     height: 32px;
 }
 .mdl-checkbox__label {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 .mdl-layout-title {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
 }
 .mdl-logo {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
 }
 .mrnote_alert_password {
     color: #ff0000;
@@ -35,15 +35,16 @@ body {
     display: none;
 }
 .mrnote_footer_link {
-    font-size: 16px;
+    font-size: 14px;
 }
 .mrnote_footer_link:hover {
 	color: #ffffff;
 }
 .mrnote_new {
+    padding-top: 3em;
     text-align: center;
 }
-.mrnote_new h1{
+.mrnote_new h2{
     font-weight: bold;
 }
 .mrnote_logo {
@@ -56,13 +57,36 @@ body {
 }
 .mrnote_input {
     height: 2em;
-    width: 40%;
+    width: 30%;
+    display: block;
+    margin: 5px auto 5px auto;
 }
 .mrnote_new_note {
-    height: 2em;
+    margin-top: 10px;
+    height: 3em;
     width: 30%;
-    font-size: 24px;
+    font-size: 20px;
 }
 .mrnote_new_note:hover {
     font-weight: bold;
+}
+.response_true {
+    width: 100%;
+    padding: 1em;
+    font-size: 2em;
+    color: #FFF;
+    background-color: #12AD35 !important;
+    margin: 0;
+    text-align: center;
+    transition: all 1s ease-in-out;
+}
+.response_false {
+    width: 100%;
+    padding: 1em;
+    font-size: 2em;
+    color: #FFF;
+    background-color: #b71c1c !important;
+    margin: 0;
+    text-align: center;
+    transition: all 1s ease-in-out;
 }

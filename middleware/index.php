@@ -8,21 +8,19 @@ include("app/library/Autoload.php");
 \app\library\Autoload::run();
 $app = new \Slim\Slim(array(
 							'cookies.encrypt' => true,
-							'cookies.secret_key' => "4c497c6ef2f4de9952509635b57e7b13a83bbb72b6158550cba5301a4af8c947b0f49c83",
+							'cookies.secret_key' => "a813d7a3a0591cc18223d906dcdf95d10983d2c0550a0d0d690a54ec8026b54cff080e63",
 							'cookies.cipher' => MCRYPT_RIJNDAEL_256,
 							'cookies.cipher_mode' => MCRYPT_MODE_CBC
 			));
 $uri = str_replace('/index.php','',$_SERVER['REQUEST_URI']);
 $uri = explode('/',$uri);
-
-if(strlen($uri[2])>0){
+if(strlen($uri[2])>0) {
 	$class = 'app\routes'.'\\'.$uri[2].'\Router';
 	$object = new $class();
 	$object::request($app);
-}else{
+} else {
 	$class = 'app\routes\Router';
 	$object = new $class();
 	$object::request($app);
 }
-
 $app->run();

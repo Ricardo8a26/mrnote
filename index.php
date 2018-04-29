@@ -5,11 +5,11 @@
 	if(isset($_SERVER['HTTPS'])) {
 		define("URL", "https://".$_SERVER['HTTP_HOST']."/");
 		define("URLC", "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/mrnote/");
+		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/mrNote/");
 	} else {
 		define("URL", "http://".$_SERVER['HTTP_HOST']."/");
 		define("URLC", "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/nrnote/");
+		define("API_SITE", "http://".$_SERVER['HTTP_HOST']."/middleware/index.php/mrNote/");
 	}
 	require_once("config/Autoload.php");
 	config\Autoload::run();
