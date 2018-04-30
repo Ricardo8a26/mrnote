@@ -32,10 +32,16 @@
 	                $key_api=$app->getCookie("IS_AUTHORIZED");
 	                if(isset($key_api)) {
 	                    $conection=new Conection();
-	                	$conection->startConection();
+	                    if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 	                	foreach ($app->request->post() as $key => $value) {
 	                        array_push($fields, $key);
-	                        array_push($values, $value);  
+	                        array_push($values, $value);
 	                    }
 	                    $querys="INSERT INTO ".$table." VALUES (";
 	                    for ($i=0; $i<count($fields); $i++) { 
@@ -79,7 +85,13 @@
 					$key_api=$app->getCookie("IS_AUTHORIZED");	
 					if(isset($key_api)) {
 						$conection = new Conection();
-						$conection->startConection();
+						if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 						$sql = $conection->getConection()->prepare('SELECT * FROM '.$table);
 						$sql->execute();
 						$data = $sql->fetchAll(\PDO::FETCH_ASSOC);
@@ -111,7 +123,13 @@
 					$key_api=$app->getCookie("IS_AUTHORIZED");
 					if(isset($key_api)) {
 						$conection = new Conection();
-						$conection->startConection();
+						if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 						$sql = $conection->getConection()->prepare('SELECT * FROM '.$table.' WHERE '.$condition.' = ?');
 						$sql->bindParam(1, $value_condition);
 						$sql->execute();
@@ -144,7 +162,13 @@
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
 		                $conection=new Conection();
-		                $conection->startConection();
+		                if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 		                $field = $app->request->post('field');
 		                $value_field = $app->request->post('value_field');
 		                $condition = $app->request->post('condition');
@@ -181,7 +205,13 @@
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
 		                $conection=new Conection();
-		                $conection->startConection();
+		                if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 		                $condition = $app->request->post('condition');
 		                $value_condition = $app->request->post('value_condition');
 		                $sql = $conection->getConection()->prepare('DELETE FROM '.$table.' WHERE '.$condition.' = ?');
@@ -215,9 +245,9 @@
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
 		                $conection=new Conection();
-		                $conection->startConection();
+		                $conection->startConectionPasswords();
 		                $password = $conection->cipherFlow($app->request->post('pass'));
-		                $sql = $conection->getConection()->prepare('SELECT private_key FROM users WHERE password=?');
+		                $sql = $conection->getConection()->prepare('SELECT private_key FROM passwords WHERE password=?');
 		                $sql->bindParam(1, $password);
 		                $field = $app->request->post('field');
 		                if($field == 'password') {
@@ -225,7 +255,7 @@
 		                } else {
 		                	$value_field = $app->request->post('value_field');
 		                }
-		                $sql = $conection->getConection()->prepare('SELECT private_key FROM users WHERE '.$field.'=?');
+		                $sql = $conection->getConection()->prepare('SELECT private_key FROM passwords WHERE '.$field.'=?');
 		                $sql->bindParam(1, $value_field);
 		                $sql->execute();
 		                $response = $sql->fetch(\PDO::FETCH_ASSOC);
@@ -257,10 +287,10 @@
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)) {
 		                $conection=new Conection();
-		                $conection->startConection();
-		                $email = $app->request->post('email');
-		                $sql = $conection->getConection()->prepare('SELECT user, email, private_key FROM users WHERE email=?');
-		                $sql->bindParam(1, $email);
+		                $conection->startConectionPasswords();
+		                $id_note = $app->request->post('id_note');
+		                $sql = $conection->getConection()->prepare('SELECT private_key FROM passwords WHERE id_note=?');
+		                $sql->bindParam(1, $id_note);
 		                $sql->execute();
 		                $response = $sql->fetch(\PDO::FETCH_ASSOC);
 		                if(isset($response)) {
@@ -291,11 +321,11 @@
 		            $key_api=$app->getCookie("IS_AUTHORIZED");
 		            if(isset($key_api)){
 		                $conection=new Conection();
-		                $conection->startConection();
-		                $user = $app->request->post('email');
+		                $conection->startConectionPasswords();
+		                $id_note = $app->request->post('id_note');
 		                $pass = $conection->cipherText($app->request->post('password'),$app->request->post('private_key'));
-		                $sql = $conection->getConection()->prepare('SELECT id,user,email,private_key,avatar,id_rol FROM users WHERE email=? AND password=?');
-		                $sql->bindParam(1,$user);
+		                $sql = $conection->getConection()->prepare('SELECT id, private_key FROM passwords WHERE id_note=? AND password=?');
+		                $sql->bindParam(1,$id_note);
 		                $sql->bindParam(2,$pass);
 		                $sql->execute();
 		                $response = $sql->fetch(\PDO::FETCH_ASSOC);
@@ -328,7 +358,13 @@
 		    		$key_api=$app->getCookie("IS_AUTHORIZED");
 		    		if(isset($key_api)) {
 			            $conection=new Conection();
-		                $conection->startConection();
+		                if ($table == 'notes' || $table == 'notes_html') {
+	                    	$conection->startConectionNotes();
+	                    }else if ($table == 'passwords'){
+	                    	$conection->startConectionPasswords();
+	                    }else if ($table == 'notes_text'){
+	                    	$conection->startConectionText();
+	                    }
 			            $sql = $conection->getConection()->prepare('SELECT MAX(id_note) as id_note FROM '.$table);
 						$sql->execute();
 						$data = $sql->fetch(\PDO::FETCH_ASSOC);

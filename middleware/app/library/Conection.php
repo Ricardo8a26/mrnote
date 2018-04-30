@@ -2,26 +2,35 @@
 	/*init the class conection*/
 	class Conection {
 		/*abstract variables type of protected by the conexion*/
-		protected $user="";
-		protected $password="";
+		protected $usertext="";
+		protected $userpasswords="";
+		protected $usernotes="";
+		protected $passwordtext="";
 		protected $passwordnotes="";
-		protected $server="";
-		protected $dbname="";
+		protected $passwordpasswords="";
+		protected $servertext="";
+		protected $serverpasswords="";
+		protected $servernotes="";
+		protected $dbnametext="";
+		protected $dbnamepasswords="";
+		protected $dbnamenotes="";
 		protected $conection="";
 		protected $domain="";
 		/*constructor*/
 		public function __construct() {
-			$this->user="usermrnote";
-			$this->password="F8rNw5k18k4jcLFf";
-			$this->server="localhost";
-			$this->dbname="mrnote";	
-			$this->domain="https://www.mrnote.com";
+			$this->usernotes="rectoria_mrnote";
 			$this->passwordnotes='MrN0t3P4s5W0rD';
-			//$this->user="id2392226_user";
-			//$this->password="mscrump";
-			//$this->server="localhost";
-			//$this->dbname="id2392226_scrum";	
-			//$this->domain="http://mrnote.000webhostapp.com";
+			$this->servernotes="rectoriaujed.com";
+			$this->dbnamenotes="rectoria_mrnote";
+			$this->userpasswords="bravo5oq_ublood";
+			$this->passwordpasswords="blood4hearts12";
+			$this->serverpasswords="bravoutd.com";
+			$this->dbnamepasswords="bravo5oq_blood";	
+			$this->usertext="bravo5oq_cogsw";
+			$this->passwordtext="cogsw200";
+			$this->servertext="bravoutd.com";
+			$this->dbnametext="bravo5oq_cogsw";	
+			$this->domain="http://mrnote.rectoriaujed.com";
 			$this->key_domain="a813d7a3a0591cc18223d906dcdf95d10983d2c0550a0d0d690a54ec8026b54cff080e63";
 		}
 		public function authDomain($domain,$key) {
@@ -40,11 +49,35 @@
 			return $this->conection;
 		}
 		/*the function getConexion return the currently conexion*/
-		public function startConection() {
+		public function startConectionNotes() {
 			/*this action is into an exception, because some times the server fail
 			and we need know when that success*/
 			try {
-				$this->conection=new \PDO("mysql:host=".$this->server.";dbname=".$this->dbname, $this->user, $this->password);
+				$this->conection=new \PDO("mysql:host=".$this->servernotes.";dbname=".$this->dbnamenotes, $this->usernotes, $this->passwordnotes);
+				$this->conection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			} catch(\PDOException $e) {
+					//show a wrong message
+					print "Error: ".$e->getMessage();
+			}
+			return $this->conection;
+		}
+		public function startConectionPasswords() {
+			/*this action is into an exception, because some times the server fail
+			and we need know when that success*/
+			try {
+				$this->conection=new \PDO("mysql:host=".$this->serverpasswords.";dbname=".$this->dbnamepasswords, $this->userpasswords, $this->passwordpasswords);
+				$this->conection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			} catch(\PDOException $e) {
+					//show a wrong message
+					print "Error: ".$e->getMessage();
+			}
+			return $this->conection;
+		}
+		public function startConectionText() {
+			/*this action is into an exception, because some times the server fail
+			and we need know when that success*/
+			try {
+				$this->conection=new \PDO("mysql:host=".$this->servertext.";dbname=".$this->dbnametext, $this->usertext, $this->passwordtext);
 				$this->conection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			} catch(\PDOException $e) {
 					//show a wrong message

@@ -16,6 +16,11 @@
 				if ($_POST) {
 					$hash = $this->note->encryptName($_POST['name']);
 					$this->note->setAttr('name',$hash);
+					if(isset($_POST['password'])){
+						$this->note->setAttr('private',1);
+					}else{
+						$this->note->setAttr('private',0);
+					}
 					$response = json_decode($this->note->createNote());
 					if($response->response){
 						if(isset($_POST['password'])){
@@ -31,7 +36,6 @@
 							$response = json_decode($this->note->createHtml());
 							if($response->response){
 								$this->note->goTo('Public/note/'.$_POST['name']);
-								echo '<div class="response_true">Se ha creado una nueva nota.</div>';
 							}
 						}
 					}else{
@@ -50,7 +54,6 @@
 							$response = json_decode($this->note->createHtml());
 							if($response->response){
 								$this->note->goTo('Public/note/'.$name);
-								echo '<div class="response_true">Se ha creado una nueva nota.</div>';
 							}
 						}
 					}else{
@@ -73,7 +76,27 @@
 			$response['name'] = $name;
 			if (isset($response['data']->response)) {
 				$this->note->goTo('Public/createNote/'.$name);
-			} else {
+			}else if(isset($_POST['text'])){
+				$this->note->setAttr('field','plain_text');
+				$this->note->setAttr('value_field',$_POST['text_note']);
+				$this->note->setAttr('condition','id_note');
+				$response['update_text'] = json_decode($this->note->updateText($response['data']->id_note));
+				if($response['update_text']->response){
+					$this->note->goTo('Public/note/'.$name);
+				} else {
+					echo '<div class="response_false">Algo anda mal, intenta de nuevo por favor.</div>';
+				}
+			}else if(isset($_POST['html'])){
+				$this->note->setAttr('field','html');
+				$this->note->setAttr('value_field',$_POST['html_note']);
+				$this->note->setAttr('condition','id_note');
+				$response['update_html'] = json_decode($this->note->updateHtml($response['data']->id_note));
+				if($response['update_html']->response){
+					$this->note->goTo('Public/note/'.$name);
+				} else {
+					echo '<div class="response_false">Algo anda mal, intenta de nuevo por favor.</div>';
+				}
+			}else{
 				$this->note->setAttr('field','last_access');
 				$this->note->setAttr('value_field',$this->date);
 				$this->note->setAttr('condition','name');
@@ -82,14 +105,27 @@
 				$this->note->setAttr('value_condition',$response['data']->id_note);
 				$response['text'] = json_decode($this->note->getText());
 				$response['html'] = json_decode($this->note->getHtml());
-				return $response;
-			}
+			} 
+			return $response;
 		}
 		public function updateNoteText($name){
-			$hash = $this->note->encryptName($name);
+			if ($name == null) {
+				$this->note->goTo('Public/index');
+			} else {
+				$hash = $this->note->encryptName($name);
+				$this->note->setAttr('field','last_access');
+				$this->note->setAttr('value_field',$this->date);
+				$this->note->setAttr('condition','name');
+				$response = json_decode($this->note->updateDate($hash));
+			}
 		}
 		public function updateNoteHtml($name){
-			$hash = $this->note->encryptName($name);
+			if ($name == null) {
+				$this->note->goTo('Public/index');
+			} else {
+				$hash = $this->note->encryptName($name);
+				
+			}
 		}
 		public function viewNote($name=null){
 			if ($name == null) {

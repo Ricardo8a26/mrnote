@@ -20,7 +20,7 @@
 			$this->private = 0;
 		}
 		public function createNote(){
-			$data = array('id_note'=>'','name'=>$this->name,'last_access'=>$this->last_access,'private'=>$this->private);
+			$data = array('id_note'=>'null','name'=>$this->name,'last_access'=>$this->last_access,'private'=>$this->private);
 				$response = $this->crud->sendPost(API_SITE.'create/notes',$data);
 			return $response;
 		}
@@ -35,7 +35,6 @@
 			return $response;
 		}
 		public function createPassword(){			
-			$this->private = 1;
 			$this->private_key = $this->crud->generateKey($this->name);
 			$data = array('id_pass'=>'','id_note'=>$this->id_note,'private_key'=>$this->private_key,'password'=>$this->crud->cipherText($this->password,$this->private_key));
 			$response = $this->crud->sendPost(API_SITE.'create/passwords',$data);
@@ -69,6 +68,16 @@
 		public function updateDate($name){
 			$data=array('field'=>$this->field,'value_field'=>$this->value_field,'condition'=>$this->condition,'value_condition'=>$name);
 			$response =  $this->crud->sendPost(API_SITE.'update/notes',$data);
+			return $response;
+		}
+		public function updateText($id_note){
+			$data=array('field'=>$this->field,'value_field'=>$this->value_field,'condition'=>$this->condition,'value_condition'=>$id_note);
+			$response =  $this->crud->sendPost(API_SITE.'update/notes_text',$data);
+			return $response;
+		}
+		public function updateHtml($id_note){
+			$data=array('field'=>$this->field,'value_field'=>$this->value_field,'condition'=>$this->condition,'value_condition'=>$id_note);
+			$response =  $this->crud->sendPost(API_SITE.'update/notes_html',$data);
 			return $response;
 		}
 	}
