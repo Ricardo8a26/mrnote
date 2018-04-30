@@ -4,7 +4,7 @@
 		/*abstract variables type of protected by the conexion*/
 		protected $user="";
 		protected $password="";
-		protected $passwordpasswords="";
+		protected $passwordnotes="";
 		protected $server="";
 		protected $dbname="";
 		protected $conection="";
@@ -16,7 +16,7 @@
 			$this->server="localhost";
 			$this->dbname="mrnote";	
 			$this->domain="https://www.mrnote.com";
-			$this->passwordpasswords='MrN0t3P4s5W0rD';
+			$this->passwordnotes='MrN0t3P4s5W0rD';
 			//$this->user="id2392226_user";
 			//$this->password="mscrump";
 			//$this->server="localhost";
