@@ -1,4 +1,4 @@
-<?php namespace views\layouts; 
+<?php namespace views\layouts;
 	$obj_default=new DefaultLayout();
 	class DefaultLayout{
 		public function __construct(){
@@ -8,10 +8,11 @@
 				<head>
 					<meta charset="utf-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/material.min.css"/>					
+					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/material.min.css"/>
 					<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/assets/css/style.css">
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-					<script type="text/javascript" src="<?php echo URL; ?>views/assets/js/material.min.js"></script> 
+					<script type="text/javascript" src="<?php echo URL; ?>views/assets/js/material.min.js"></script>
+					<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 					<link rel="shortcut icon" type="image/x-icon" href="<?php echo URL; ?>views/assets/img/platform/favicon.ico">
 					<title>Mr. Note</title>
 				</head>
@@ -26,7 +27,7 @@
 			<?php
 		}
 		public function __destruct(){
-			?>	
+			?>
 			  			</main>
 			  			<footer class="mdl-mini-footer">
 						  	<div class="mdl-mini-footer__left-section">

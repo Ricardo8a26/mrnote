@@ -23,3 +23,23 @@ body {
 	width: 70%;
 	height: auto;
 }
+.note-container{
+  background-color: #DDDDDD;
+}
+.note-html{
+}
+.note-html-title{
+  width: 50%;
+}
+.note-text{
+}
+.note-text-title{
+  width: 50%;
+}
+#note-txt-html{
+  height: 400px;
+}
+.note-txt-plain{
+  height: 400px;
+  width: 100%;
+}

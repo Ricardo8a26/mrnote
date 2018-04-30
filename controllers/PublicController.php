@@ -6,7 +6,10 @@
 
 		}
 		public function index(){
-			
+
+		}
+		public function note(){
+
 		}
 	}
  ?>
