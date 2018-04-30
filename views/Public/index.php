@@ -1,15 +1,28 @@
 <div class="page-content mdl-grid">
-	<div class="mrnote_index mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-		<h1>Bienvenido a Mr. Note</h1>
-		<h2>Nombre de nueva nota</h2>
-		<br>
-		<input class="nrnote_name" type="text" name="name" id="name" placeholder="Ingrese el nombre">
-		<br>
-		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
-		Nueva nota
-		</button>
+	<div class="mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+		<div class="mrnote_new">
+			<h2>Bienvenido a Mr. Note</h2>
+			<h4>Crear una nueva nota</h4>
+			<form class="mrnote_note" action="<?php echo URL; ?>Public/createNote" method="POST">
+				<input class="mrnote_input" type="text" name="name" id="name" placeholder="Nombre de nueva nota" required>
+				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="mrnote_check_password">
+				  	<input type="checkbox" id="mrnote_check_password" name="mrnote_check_password" class="mdl-checkbox__input">
+				  	<span class="mdl-checkbox__label">¿Desea proteger con contraseña?</span>
+				</label>
+				<br>
+				<div class="mrnote_password mrnote_hide" id="mrnote_password" name="mrnote_password">
+					<input class="mrnote_input" type="password" name="password" id="password" minlength="4" title="Debe contener al menos 4 carácteres" placeholder="Ingrese su contraseña">
+					<input class="mrnote_input" type="password" name="mrnote_confirm_password" id="mrnote_confirm_password" minlength="4" title="Debe contener al menos 4 carácteres" placeholder="Confirme su contraseña">
+					<span class="mrnote_alert_password">No olvides tu contraseña ya que no podra ser restablecida.</span>
+				</div>
+				<button class="mrnote_new_note mdl-button mdl-js-button mdl-button--raised mdl-button--colored" name="submit" id="submit" type="submit">
+				Crear nota
+				</button>
+				<div id="response_password"></div>
+			</form>
+		</div>
 	</div>
-	<div class="mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mrnote_logo">
-		<img src="<?php echo URL; ?>views/assets/img/platform/mrnote.jpeg">
+	<div class="mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mrnote_logo_container">
+		<img class="mrnote_logo" src="<?php echo URL; ?>views/assets/img/platform/mrnote.jpeg">
 	</div>
 </div>

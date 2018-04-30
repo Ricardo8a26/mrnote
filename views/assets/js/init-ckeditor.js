@@ -1,1 +1,1 @@
-CKEDITOR.replace( 'html-txt-note' );
+CKEDITOR.replace('html-txt-note');

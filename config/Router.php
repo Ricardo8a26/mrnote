@@ -1,5 +1,4 @@
 <?php namespace config;
-
 	class Router{
 		public static function run(Request $request){
 			$controller=$request->getController()."Controller";
@@ -39,7 +38,12 @@
 					}
 				}
 			}else{
-				require_once($not_found_controller);
+				$uri = URL.'Public/index/'.substr($controller, 0, -10);
+				?>
+					<script>
+						location.href = '<?php echo $uri; ?>';
+					</script>
+				<?php
 			}
 		}
 	}

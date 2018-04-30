@@ -1,30 +1,49 @@
 <?php namespace models;
 	use models\CRUD as crud;
-	class Admin{
+	class Note{
 		protected $crud;
-		protected $id;
-		protected $user;
-		protected $email;
-		protected $private_key;
+		protected $id_note;
+		protected $name;
+		protected $plain_text;
+		protected $html;
+		protected $last_access;
+		protected $private;
 		protected $password;
-		protected $avatar;
-		protected $id_rol;
+		protected $private_key;
 		protected $condition;
 		protected $value_condition;
-		protected $blob;
+		protected $field;
+		protected $value_field;
 		public function __construct(){
 			$this->crud = new CRUD();
+			$this->last_access = date ('Y/n/j');
+			$this->private = 0;
 		}
-		public function addAdmin(){
-			$url = 'views'.DS.'assets'.DS.'img'.DS.'admins'.DS.'admin_'.sha1($this->user).'.png';
-			if(move_uploaded_file($this->avatar['tmp_name'], $url)){
-				$this->key = $this->crud->generateKey($this->email);
-				$data = array('id_admin'=>'','user'=>$this->user,'email'=>$this->email,'private_key'=>$this->key,'password'=>$this->crud->cipherText($this->password,$this->key)[0],'avatar'=>$url,'id_rol'=>$this->rol);
-				$response = $this->crud->sendPost(API_ADMIN.'create/admins',$data);
-			}else{
-				$response = json_encode(array('response'=>'file upload failed'));
-			}
+		public function createNote(){
+			$data = array('id_note'=>'','name'=>$this->name,'last_access'=>$this->last_access,'private'=>$this->private);
+				$response = $this->crud->sendPost(API_SITE.'create/notes',$data);
 			return $response;
+		}
+		public function createText(){
+			$data = array('id'=>'','id_note'=>$this->id_note,'plain_text'=>'');
+			$response = $this->crud->sendPost(API_SITE.'create/notes_text',$data);
+			return $response;
+		}
+		public function createHtml(){
+			$data = array('id'=>'','id_note'=>$this->id_note,'html'=>'');
+			$response = $this->crud->sendPost(API_SITE.'create/notes_html',$data);
+			return $response;
+		}
+		public function createPassword(){			
+			$this->private = 1;
+			$this->private_key = $this->crud->generateKey($this->name);
+			$data = array('id_pass'=>'','id_note'=>$this->id_note,'private_key'=>$this->private_key,'password'=>$this->crud->cipherText($this->password,$this->private_key));
+			$response = $this->crud->sendPost(API_SITE.'create/passwords',$data);
+			return $response;
+		}
+		public function encryptName($name){
+			$hash = sha1(md5($name));
+			return $hash;
 		}
 		public function setAttr($attr,$val){
 			$this->$attr = $val;
@@ -32,29 +51,25 @@
 		public function getAttr($attr){
 			return $this->$attr;
 		}
-		public function getAdmins(){
-			$response = $this->crud->sendGet(API_ADMIN.'admins');
+		public function getNote(){
+			$response = $this->crud->sendGet(API_SITE.'notes/'.$this->condition.'/'.$this->value_condition);
 			return $response;
 		}
-		public function getAdminByCondition(){
-			$response = $this->crud->sendGet(API_ADMIN.'admins/'.$this->condition.'/'.$this->value_condition);
+		public function getText(){
+			$response = $this->crud->sendGet(API_SITE.'notes_text/'.$this->condition.'/'.$this->value_condition);
 			return $response;
 		}
-		public function getUser(){
-			$response = $this->crud->sendPost(API_ADMIN.'getUser',array('user'=>$this->user));
+		public function getHtml(){
+			$response = $this->crud->sendGet(API_SITE.'notes_html/'.$this->condition.'/'.$this->value_condition);
 			return $response;
-		}
-		public function updateAdmin(){
-			$url = 'views'.DS.'assets'.DS.'img'.DS.'admins'.DS.$this->avatar;
-			if(move_uploaded_file($this->blob['tmp_name'],$url)){
-				$response = $this->crud->sendPost(API_ADMIN.'update/admins',array('field'=>'avatar','value_field' => $url,'condition' => $this->condition, 'value_condition'  => $this->value_condition));
-				return $response;
-			}else{
-				return json_encode(array('response'=>false));
-			}
 		}
 		public function goTo($uri){
 			$this->crud->go($uri);
+		}
+		public function updateDate($name){
+			$data=array('field'=>$this->field,'value_field'=>$this->value_field,'condition'=>$this->condition,'value_condition'=>$name);
+			$response =  $this->crud->sendPost(API_SITE.'update/notes',$data);
+			return $response;
 		}
 	}
  ?>
