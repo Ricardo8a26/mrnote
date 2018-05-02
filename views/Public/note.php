@@ -7,8 +7,10 @@
     </div>
     <div class="mdl-tabs__panel is-active note-text" id="text-tab">
       <form action="<?php echo URL; ?>Public/note/<?php echo $data['name']; ?>" method="POST">
-        <textarea class="note-txt-plain" name="text_note" id="text_note" rows="28" autofocus><?php echo $data['text']->plain_text; ?></textarea>
+        <textarea class="note-txt-plain" name="text_note" id="text_note" rows="23" autofocus><?php echo $data['text']->plain_text; ?></textarea>
         <button type="submit" class="mdl-button mdl-js-button mdl-button--primary" name="text">Guardar</button>
+        <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">lock</i></button>
+        <button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">lock_open</i></button>
       </form>
     </div>
     <div class="mdl-tabs__panel note-html" id="html-tab">

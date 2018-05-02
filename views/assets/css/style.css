@@ -8,6 +8,12 @@ body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+.mdl-card-pw{
+  width: 50%;
+  align-items: center;
+  height: 25%;
+
+}
 .mdl-checkbox {
     display: initial;
     height: 32px;
@@ -15,6 +21,9 @@ body {
 .mdl-checkbox__label {
     font-size: 16px;
     font-weight: bold;
+}
+.mdl-tf-pw{
+  
 }
 .mdl-logo {
     font-weight: bold;
@@ -54,7 +63,7 @@ body {
   background-color: #DDDDDD;
   height: 100%;
 }
-.note-html-title{ 
+.note-html-title{
   width: 50%;
 }
 .note-text-title {

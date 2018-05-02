@@ -105,7 +105,7 @@
 				$this->note->setAttr('value_condition',$response['data']->id_note);
 				$response['text'] = json_decode($this->note->getText());
 				$response['html'] = json_decode($this->note->getHtml());
-			} 
+			}
 			return $response;
 		}
 		public function updateNoteText($name){
@@ -124,7 +124,7 @@
 				$this->note->goTo('Public/index');
 			} else {
 				$hash = $this->note->encryptName($name);
-				
+
 			}
 		}
 		public function viewNote($name=null){
@@ -141,6 +141,9 @@
 				$response['html'] = json_decode($this->note->getHtml());
 				return $response;
 			}
+		}
+		public function pwrequest(){
+			
 		}
 	}
  ?>
