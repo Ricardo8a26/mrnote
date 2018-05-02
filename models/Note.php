@@ -65,6 +65,13 @@
 		public function goTo($uri){
 			$this->crud->go($uri);
 		}
+		public function login(){
+			$key = json_decode($this->crud->sendPost(API_SITE.'getUser',array('id_note' => $this->id_note)));
+			$this->private_key=$key->private_key;
+			$data = array('email'=>$this->email,'password'=>$this->password,'private_key'=>$this->private_key);
+			$response = $this->crud->sendPost(API_ADMIN.'login',$data);
+			return $response;
+		}
 		public function updateDate($name){
 			$data=array('field'=>$this->field,'value_field'=>$this->value_field,'condition'=>$this->condition,'value_condition'=>$name);
 			$response =  $this->crud->sendPost(API_SITE.'update/notes',$data);

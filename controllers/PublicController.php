@@ -76,7 +76,9 @@
 			$response['name'] = $name;
 			if (isset($response['data']->response)) {
 				$this->note->goTo('Public/createNote/'.$name);
-			}else if(isset($_POST['text'])){
+			} else if ($response['data']->private) {
+				$this->note->goTo('Public/pwRequest/'.$name);
+			} else if (isset($_POST['text'])){
 				$this->note->setAttr('field','plain_text');
 				$this->note->setAttr('value_field',$_POST['text_note']);
 				$this->note->setAttr('condition','id_note');
@@ -86,7 +88,7 @@
 				} else {
 					echo '<div class="response_false">Algo anda mal, intenta de nuevo por favor.</div>';
 				}
-			}else if(isset($_POST['html'])){
+			} else if (isset($_POST['html'])){
 				$this->note->setAttr('field','html');
 				$this->note->setAttr('value_field',$_POST['html_note']);
 				$this->note->setAttr('condition','id_note');
@@ -142,8 +144,26 @@
 				return $response;
 			}
 		}
-		public function pwrequest(){
-			
+		public function pwRequest($name=null){
+			if ($name == null) {
+				$this->note->goTo('Public/index');
+			} else {
+				$response['name'] = $name;
+				$hash = $this->note->encryptName($name);
+				if($_POST){
+					$this->note->setAttr('name',$hash);
+					$this->note->setAttr('condition','name');
+					$this->note->setAttr('value_condition',$hash);
+					$response['data'] = json_decode($this->note->getNote());
+					$this->note->setAttr('id_note',$response['data']->id_note);
+					$this->note->setAttr('password',$_POST['password']);
+					$response = json_decode($this->note->login());
+					if(!isset($response->response)){
+						$this->admin->goTo('Admin');
+					}
+				}
+			}
+			return $response['data'];
 		}
 	}
  ?>

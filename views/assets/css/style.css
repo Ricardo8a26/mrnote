@@ -152,3 +152,13 @@ body {
     font-weight: bold;
     font-size: 24px;
 }
+.pw_request {
+    padding-top: 3em;
+}
+.mrnote_pw_note {
+    margin-top: 10px;
+    height: 3em;
+    width: 30%;
+    font-size: 20px;
+    margin-left: 35%;
+}
